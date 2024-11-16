@@ -8,6 +8,7 @@ import General from './components/general'
 import Address from './components/address'
 import Education from './components/education'
 import WorkExperience from './components/workExp'
+import Resume from './components/resume'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -16,6 +17,6 @@ createRoot(document.getElementById('root')).render(
     <DropDown name={"Address"} info={<Address />}/>
     <DropDown name={"Education"} info={<Education />}/>
     <DropDown name={"Work Experience"} info={<WorkExperience />} />
-    
+    <Resume />
   </StrictMode>,
 )

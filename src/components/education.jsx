@@ -22,14 +22,6 @@ export default function Education() {
                 <label htmlFor="gpa">GPA</label>
                 <input type="text" id="gpa" />
             </div>
-            <div className="input-field">
-                <label htmlFor="start-date">Start Date</label>
-                <input type="date" id="start-date" />
-            </div>
-            <div className="input-field">
-                <label htmlFor="end-date">End Date</label>
-                <input type="date" id="end-date" />
-            </div>
             <div className="edu-btn-wrapper">
                 <button type="submit">Submit</button>
             </div>
