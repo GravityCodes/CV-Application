@@ -30,8 +30,11 @@
 
     --yellow: #e8c514;
     --yellow--light: #fcea91;
+    
+    --backdrop: #23232399;
+    
     background-color: var(--c2-100);
- 
+    
 }
 
 .header{
@@ -121,14 +124,101 @@ h2 {
     box-shadow: 0px 0px 10px var(--c-500);
 }
 
-.edu-btn-wrapper button::before {
+.edu-btn-wrapper .add-btn::before {
     content: url("../assets/plus-square.svg");
     position: relative;
     top: 3px;
     left: -1px;
 }
 
+/* Card Styles */
 
+.card-wrapper {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.education-card {
+    
+    background-color: transparent;
+    padding: 10px;
+    color: var(--c3-100);
+    box-shadow: 0px 0px 10px var(--c2-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.education-card h5 {
+    font-size: 1.2rem;
+}
+
+.btn-wrapper {
+    display: flex;
+    gap: 20px;
+}
+
+.education-card button {
+    padding: 5px 10px 2px;
+    border: none;
+    color: var(--c3-100);
+}
+
+
+.education-card .remove {
+    background-color: var(--red);
+    box-shadow: 0px 0px 5px var(--red);
+    border: 1px solid var(--red-light);
+}
+.education-card .remove::after {
+    content: url("../assets/trash-2.svg");
+}
+
+
+.education-card .edit {
+    background-color: var(--yellow);
+    box-shadow: 0px 0px 5px var(--yellow);
+    border: 1px solid var(--yellow--light);
+}
+.education-card .edit::after {
+    content: url("../assets/edit.svg");
+}
+
+/* Dialog style */
+dialog {
+    background-color: var(--c2-100);
+    left: 10%;
+    top: 10%;
+    border: 1px solid var(--c2-300);
+}
+
+dialog  h2 {
+    color: var(--c-500);
+    white-space: nowrap;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+dialog .edu-btn-wrapper {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.edu-btn-wrapper .cancel-btn {
+    background-color: var(--red);
+    border: 1px solid var(--red-light);
+    box-shadow: 0px 0px 10px var(--red);
+}
+
+::backdrop {
+    background-color: var(--backdrop);
+    filter: blur(10px);
+}
+
+/* resume */
 
 .resume-wrapper{
     border: 1px solid var(--c2-300);
@@ -165,56 +255,4 @@ h2 {
     padding-right: 10px;
     margin-right: 10px;
     
-}
-
-/* Card Styles */
-
-.card-wrapper {
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.education-card {
-    
-    background-color: transparent;
-    padding: 10px;
-    color: var(--c3-100);
-    box-shadow: 0px 0px 10px var(--c2-shadow);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-
-.btn-wrapper {
-    display: flex;
-    gap: 20px;
-}
-
-.education-card button {
-    padding: 5px 10px 2px;
-    border: none;
-    color: var(--c3-100);
-}
-
-
-.education-card .remove {
-    background-color: var(--red);
-    box-shadow: 0px 0px 5px var(--red);
-    border: 1px solid var(--red-light);
-}
-.education-card .remove::after {
-    content: url("../assets/trash-2.svg");
-}
-
-
-.education-card .edit {
-    background-color: var(--yellow);
-    box-shadow: 0px 0px 5px var(--yellow);
-    border: 1px solid var(--yellow--light);
-}
-.education-card .edit::after {
-    content: url("../assets/edit.svg");
 }

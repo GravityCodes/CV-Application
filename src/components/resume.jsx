@@ -30,7 +30,7 @@ export default function  Resume(){
         }
     }
     
-    //addres handlers
+    //address handlers
     function addressHandler (e) {
         switch(e.target.id){
             case "city": 
@@ -58,8 +58,9 @@ export default function  Resume(){
         let major = e.target[2].value;
         let city = e.target[3].value;
         let state = e.target[4].value;
+        let date = e.target[5].value;
 
-        setEducationContainer([...educationContainer,new EducationObject(school, degree, major, city, state)]);
+        setEducationContainer([...educationContainer,new EducationObject(school, degree, major, city, state, date)]);
         e.target.reset();
     }
 
@@ -69,13 +70,22 @@ export default function  Resume(){
         0;
         
     }
-    
-    function editBtnHandler(id){
-        console.log(id);
-    }
 
-    const resumeStyle = {
-        padding: "15px 10px"
+    function updateCardHandler(e, id){
+        e.preventDefault();
+        
+        let cardId = id;
+        let school = e.target[0].value;
+        let degree = e.target[1].value;
+        let major = e.target[2].value;
+        let city = e.target[3].value;
+        let state = e.target[4].value;
+        let date = e.target[5].value;
+        
+        let newEducationContainer = educationContainer.filter(card => card.id != id);
+        
+        setEducationContainer([...newEducationContainer,new EducationObject(school, degree, major, city, state, date, cardId)]);
+        e.target.reset();
     }
 
     return (
@@ -87,12 +97,12 @@ export default function  Resume(){
             <DropDown name={"Education"} info={<Education educationCardArray={educationContainer} 
                                                           handleSubmit={educationSubmitHandler}
                                                           handleRemove={removeBtnHandler}
-                                                          handleEdit={editBtnHandler} />}/>
+                                                          handleUpdate={updateCardHandler} />}/>
             
             <DropDown name={"Work Experience"} info={<WorkExperience />} />
             
             <div className="resume-wrapper">
-                <div  style={resumeStyle} className="resume">
+                <div  style={{padding: "15px 10px"}} className="resume">
                     <h3>{generalInfo.name == "" ? "Your Name": generalInfo.name}</h3>
                     <div className="profile-info">
                         <p>{addressArray.some(e => e != "") ? [...addressArray].join(" ") : "Address"}</p>
