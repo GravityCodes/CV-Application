@@ -41,6 +41,9 @@ export default function Education({educationCardArray, handleSubmit, handleRemov
             case 'state':
                 setCurrentCard([{...currentCard[0], state: e.target.value}]);
                 break;
+            case 'date':
+                setCurrentCard([{...currentCard[0], dateInput: e.target.value}]);
+                break;
 
         }
         
@@ -118,7 +121,7 @@ export default function Education({educationCardArray, handleSubmit, handleRemov
                 </div>
                 <div className="input-field">
                     <label htmlFor="date">Graduation Date</label>
-                    <input type="month" id="date" />
+                    <input type="month" id="date" value={currentCard[0].dateInput} onChange={dialogChangeHandler} />
                 </div>
                 <div className="edu-btn-wrapper">
                     <button type="submit" onClick={ toggleDialog}>Update</button>

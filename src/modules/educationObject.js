@@ -1,3 +1,5 @@
+import {format} from 'date-fns'
+
 export default function EducationObject(name, degree, major, city, state, date, id=crypto.randomUUID() ){
         
         this.id = id;
@@ -6,13 +8,9 @@ export default function EducationObject(name, degree, major, city, state, date, 
         this.major = major;
         this.city = city;
         this.state  = state;
-        const dateArray = date.split("-");
-        console.log(dateArray[0])
-        console.log(dateArray[1][1])
-        const newDate = Date(Number(dateArray[0]), Number(dateArray[1][1]))
-        console.log(newDate)
-        const controlledDate = Date(2025, 11);
-        console.log(controlledDate)
-
-        this.date = date;
+        this.dateInput = date;
+        const dateArray = this.dateInput.split("-");
+        const newDate = format(new Date(Number(dateArray[0]), Number(dateArray[1][1])-1), 'MMMM yyyy')
+        this.date = newDate;
+        
 }

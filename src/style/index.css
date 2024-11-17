@@ -220,6 +220,10 @@ dialog .edu-btn-wrapper {
 
 /* resume */
 
+h4{
+    font-size: 0.9rem;
+}
+
 .resume-wrapper{
     border: 1px solid var(--c2-300);
     height: 100%;
@@ -255,4 +259,28 @@ dialog .edu-btn-wrapper {
     padding-right: 10px;
     margin-right: 10px;
     
+}
+
+
+/* resume Education */
+
+.resume-education-item h5 {
+    font-size: 0.6rem;
+}
+
+.resume-education-item p {
+    font-size: 0.5rem;
+}
+
+.resume-education-item > p {
+    margin-top: -5px;
+}
+
+.education-item-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.education-item-top span {
+    font-weight: normal;
 }

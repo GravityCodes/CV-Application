@@ -115,8 +115,10 @@ export default function  Resume(){
                     <hr />
                     {educationContainer.length != 0 && educationContainer.map(card  => {
                             return (<div className="resume-education-item" key={card.id}>
-                                        <h5>{card.name}</h5>
-                                        <p>{card.city}, {card.state}</p>
+                                        <div className="education-item-top">
+                                            <h5>{card.name}  <span> | {card.city}, {card.state} </span></h5>
+                                            <p>{card.date}</p>
+                                        </div>
                                         <p>{card.degree} in {card.major}</p>
                                     </div>)
                     })}
