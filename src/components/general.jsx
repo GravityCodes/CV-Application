@@ -13,8 +13,8 @@ export default function General({generalInfo, changeHandler}) {
                 </div>
     
                 <div className="input-field">
-                    <label htmlFor="phone-number">Phone Number</label>
-                    <input type="tel" id="phone-number" value={generalInfo.phone} onChange={changeHandler} />
+                    <label htmlFor="phone">Phone Number</label>
+                    <input type="tel" id="phone" value={generalInfo.phone} onChange={changeHandler} />
                 </div>
             </div>
             )

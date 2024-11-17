@@ -18,12 +18,18 @@
     --c-400-50: #9400d884;
     --c-500: #ae00ff;
 
+    --c2-shadow: #232323 ;
     --c2-100: #303030;
     --c2-200: #3e3e3e;
     --c2-300: #505050;
     
     --c3-100: #ffffff;
 
+    --red: #da2a2a;
+    --red-light: #d55858;
+
+    --yellow: #e8c514;
+    --yellow--light: #fcea91;
     background-color: var(--c2-100);
  
 }
@@ -35,7 +41,8 @@
     padding: 5px;
     font-size: 1.3rem;
     white-space: nowrap;
-
+    text-shadow: 0px 0px 5px var(--c-500);
+    user-select: none;
 }
 
 .dotted {
@@ -107,7 +114,18 @@ h2 {
     width: 100%;
     color: var(--c3-100);
     background-color: var(--c-400);
-    border: none;
+    border: 1px solid var(--c-500);
+
+    position: relative;
+    margin-top: 10px;
+    box-shadow: 0px 0px 10px var(--c-500);
+}
+
+.edu-btn-wrapper button::before {
+    content: url("../assets/plus-square.svg");
+    position: relative;
+    top: 3px;
+    left: -1px;
 }
 
 
@@ -133,7 +151,7 @@ h2 {
 .profile-info {
     display: flex;
     justify-content: center;
-    font-size: 0.6rem;
+    font-size: 0.5rem;
     margin-bottom: 5px;
 }
 
@@ -147,4 +165,56 @@ h2 {
     padding-right: 10px;
     margin-right: 10px;
     
+}
+
+/* Card Styles */
+
+.card-wrapper {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.education-card {
+    
+    background-color: transparent;
+    padding: 10px;
+    color: var(--c3-100);
+    box-shadow: 0px 0px 10px var(--c2-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.btn-wrapper {
+    display: flex;
+    gap: 20px;
+}
+
+.education-card button {
+    padding: 5px 10px 2px;
+    border: none;
+    color: var(--c3-100);
+}
+
+
+.education-card .remove {
+    background-color: var(--red);
+    box-shadow: 0px 0px 5px var(--red);
+    border: 1px solid var(--red-light);
+}
+.education-card .remove::after {
+    content: url("../assets/trash-2.svg");
+}
+
+
+.education-card .edit {
+    background-color: var(--yellow);
+    box-shadow: 0px 0px 5px var(--yellow);
+    border: 1px solid var(--yellow--light);
+}
+.education-card .edit::after {
+    content: url("../assets/edit.svg");
 }

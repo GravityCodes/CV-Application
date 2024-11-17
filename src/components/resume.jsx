@@ -4,12 +4,19 @@ import General from './general'
 import Address from './address'
 import Education from './education'
 import WorkExperience from './workExp'
+import EducationObject from '../modules/educationObject'
 
 export default function  Resume(){
     const [generalInfo, setGeneralInfo] = useState({name: "", email: "", phone: ""});
-    
+    const [address, setAddress] = useState({city: "", state: "",  country: "", zip: ""});
+    const [educationContainer, setEducationContainer] = useState([]);
+
+    // Turn the address object to a list of value to display it to resume
+    let addressArray = Object.values(address);
+
+
+    //general information handlers
     function generalInfoHandler (e) {
-        
         switch(e.target.id){
             case "name": 
                 setGeneralInfo({...generalInfo, name: e.target.value});
@@ -23,7 +30,50 @@ export default function  Resume(){
         }
     }
     
+    //addres handlers
+    function addressHandler (e) {
+        switch(e.target.id){
+            case "city": 
+                setAddress({...address, city: e.target.value});
+                break;
+            case "state": 
+                setAddress({...address, state: e.target.value});
+                break;
+            case "country": 
+                setAddress({...address, country: e.target.value});
+                break;
+            case "zip": 
+                setAddress({...address, zip: e.target.value});
+                break;
+        }
+    }
+
+    // education handlers
+    function educationSubmitHandler(e) {
+        e.preventDefault();
+        
+
+        let school = e.target[0].value;
+        let degree = e.target[1].value;
+        let major = e.target[2].value;
+        let city = e.target[3].value;
+        let state = e.target[4].value;
+
+        setEducationContainer([...educationContainer,new EducationObject(school, degree, major, city, state)]);
+        e.target.reset();
+    }
+
+    function removeBtnHandler(id){
+        confirm("This action can not be reversed. Are you sure you want to continue?") ? 
+        setEducationContainer([...educationContainer].filter(card => card.id != id)) :
+        0;
+        
+    }
     
+    function editBtnHandler(id){
+        console.log(id);
+    }
+
     const resumeStyle = {
         padding: "15px 10px"
     }
@@ -31,22 +81,35 @@ export default function  Resume(){
     return (
         <>
             <DropDown name={"General Infomation"} info={<General generalInfo={generalInfo} changeHandler={generalInfoHandler} />}/>
-            <DropDown name={"Address"} info={<Address />}/>
-            <DropDown name={"Education"} info={<Education />}/>
+
+            <DropDown name={"Address"} info={<Address address={address} changeHandler={addressHandler}/>}/>
+
+            <DropDown name={"Education"} info={<Education educationCardArray={educationContainer} 
+                                                          handleSubmit={educationSubmitHandler}
+                                                          handleRemove={removeBtnHandler}
+                                                          handleEdit={editBtnHandler} />}/>
+            
             <DropDown name={"Work Experience"} info={<WorkExperience />} />
+            
             <div className="resume-wrapper">
                 <div  style={resumeStyle} className="resume">
                     <h3>{generalInfo.name == "" ? "Your Name": generalInfo.name}</h3>
                     <div className="profile-info">
-                        <p>Boston MA 02121</p>
-                        <p>857-930-1820</p>
-                        <p>Johan.mesa2001@gmail.com</p>
+                        <p>{addressArray.some(e => e != "") ? [...addressArray].join(" ") : "Address"}</p>
+                        <p>{generalInfo.phone == "" ? "Phone number" : generalInfo.phone}</p>
+                        <p>{generalInfo.email == "" ? "Email" : generalInfo.email}</p>
                     </div>
 
 
                     <h4>Education</h4>
                     <hr />
-
+                    {educationContainer.length != 0 && educationContainer.map(card  => {
+                            return (<div className="resume-education-item" key={card.id}>
+                                        <h5>{card.name}</h5>
+                                        <p>{card.city}, {card.state}</p>
+                                        <p>{card.degree} in {card.major}</p>
+                                    </div>)
+                    })}
                     <h4>Skills</h4>
                     <hr />
 
