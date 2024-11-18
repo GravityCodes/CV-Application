@@ -8,6 +8,7 @@ import WorkExperience from './workExp'
 import EducationObject from '../modules/educationObject'
 import Skill from "../modules/skillObject"
 import Duty from "../modules/dutyObject"
+import Work from "../modules/workObject"
 
 export default function  Resume(){
     const [generalInfo, setGeneralInfo] = useState({name: "", email: "", phone: ""});
@@ -110,8 +111,49 @@ export default function  Resume(){
     function addNewDuty(newDuty){
         setDutiesContainer([...dutiesContainer, new Duty(newDuty)]);
     }
+
     function removeDuty(id){
         setDutiesContainer([...dutiesContainer].filter(duty => duty.id != id));
+    }
+
+    function workSubmitHandler(e) {
+        e.preventDefault();
+        
+        let name = e.target[0].value;
+        let jobTitle = e.target[1].value;
+        let city = e.target[2].value;
+        let state = e.target[3].value;
+        let startDate = e.target[4].value;
+        let endDate = e.target[5].value;
+        let duties = dutiesContainer;
+
+        setWorkContainer([...workContainer,new Work(name,jobTitle,city,state,startDate,endDate,duties)]);
+        e.target.reset();
+        setDutiesContainer([]);
+    }
+
+    function removeWorkItem(id) {
+        confirm("This action can not be reversed. Are you sure you want to continue?") ? 
+        setWorkContainer([...workContainer].filter(card => card.id != id)) : 0;
+    }
+
+    function workUpdateCardHandler(e, id, dutiesList){
+        e.preventDefault();
+
+        let cardId = id;
+        let name = e.target[0].value;
+        let jobTitle = e.target[1].value;
+        let city = e.target[2].value;
+        let state = e.target[3].value;
+        let startDate = e.target[4].value;
+        let endDate = e.target[5].value;
+
+        let duties = dutiesList;
+
+        let newWorkContainer = workContainer.filter(card => card.id != id);
+        
+        setWorkContainer([...newWorkContainer, new Work(name, jobTitle, city, state, startDate, endDate, duties, cardId)]);
+        e.target.reset();
     }
 
     return (
@@ -131,7 +173,11 @@ export default function  Resume(){
 
             <DropDown name={"Work Experience"} info={<WorkExperience dutyContainer={dutiesContainer}
                                                                      addDutyHandler={addNewDuty}
-                                                                     dutyRemoveHandler={removeDuty} />} />
+                                                                     dutyRemoveHandler={removeDuty}
+                                                                     workSubmitHandler={workSubmitHandler}
+                                                                     workContainer={workContainer}
+                                                                     handleRemove={removeWorkItem}
+                                                                     handleUpdate={workUpdateCardHandler}/>} />
             
             <div className="resume-wrapper">
                 <div  style={{padding: "15px 10px"}} className="resume">
@@ -166,6 +212,22 @@ export default function  Resume(){
 
                     <h4>Work  Experience</h4>
                     <hr />
+                    {workContainer.length != 0 && workContainer.map(card  => {
+                            return (<div className="resume-work-item" key={card.id}>
+                                        <div className="work-item-top">
+                                            <h5>{card.name}  <span> | {card.city}, {card.state} </span></h5>
+                                            <p>{card.startDate} - {card.endDate}</p>
+                                        </div>
+                                        <p>{card.jobTitle}</p>
+                                        <ul>
+                                            {card.dutiesList.length !=0 && card.dutiesList.map(duty => {
+                                                return (
+                                                    <li key={duty.id}>{duty.duty}</li>
+                                                        )
+                                            })}
+                                        </ul>
+                                    </div>)
+                    })}
                 </div>
             </div>
         </>

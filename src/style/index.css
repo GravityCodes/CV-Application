@@ -61,13 +61,25 @@
     cursor: pointer;
 }
 
+.work-card .dropdown {
+    font-size: 0.7rem;
+    padding: 0px;
+    border-bottom: none;
+    
+}
+
 .active {
     border-bottom:none;
 }
 
 h2 {
     font-weight: 200;
+}
 
+.work-card h2::after {
+    content: url("../assets/chevron-down-sm.svg");
+    top: 4px;
+    position: relative;
 }
 
 .dropdown::after {
@@ -75,6 +87,10 @@ h2 {
     position: absolute;
     right: 10px;
     top: 5px;
+}
+
+.work-card .dropdown::after {
+    content: url("");
 }
 
 input, textarea{
@@ -117,6 +133,10 @@ input:focus, textarea:focus {
     padding-bottom: 20px;
 }
 
+.work-card .form {
+    border-bottom: none;
+}
+
 .edu-btn-wrapper {
     width: 100px;
     margin: 0 auto;
@@ -126,6 +146,7 @@ button {
     border: 1px solid var(--c-500);
     background-color: var(--c-400);
     box-shadow: 0px 0px 10px var(--c-500);
+    cursor: pointer;
 }
 
 .edu-btn-wrapper button {
@@ -152,7 +173,7 @@ button {
     gap: 10px;
 }
 
-.education-card {
+.education-card, .work-card {
     
     background-color: transparent;
     padding: 10px;
@@ -172,29 +193,34 @@ button {
     gap: 20px;
 }
 
-.education-card button {
+.education-card button,
+.work-card button {
     padding: 5px 10px 2px;
     border: none;
     color: var(--c3-100);
 }
 
-
-.education-card .remove {
+.education-card .remove,
+.work-card .remove {
     background-color: var(--red);
     box-shadow: 0px 0px 5px var(--red);
     border: 1px solid var(--red-light);
 }
-.education-card .remove::after {
+
+.education-card .remove::after,
+.work-card .remove::after {
     content: url("../assets/trash-2.svg");
 }
 
-
-.education-card .edit {
+.education-card .edit,
+.work-card .edit {
     background-color: var(--yellow);
     box-shadow: 0px 0px 5px var(--yellow);
     border: 1px solid var(--yellow--light);
 }
-.education-card .edit::after {
+
+.education-card .edit::after,
+.work-card .edit::after {
     content: url("../assets/edit.svg");
 }
 
@@ -204,6 +230,12 @@ dialog {
     left: 10%;
     top: 10%;
     border: 1px solid var(--c2-300);
+}
+
+.work-dialog {
+    left: 5%;
+    top: 5%;
+    height: 600px;
 }
 
 dialog  h2 {
@@ -376,3 +408,6 @@ h4{
     grid-template-columns: repeat(2, 1fr);
     column-gap: 10px;
 }
+
+/* resume work */
+
