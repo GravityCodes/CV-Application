@@ -10,7 +10,7 @@ export default function EducationObject(name, degree, major, city, state, date, 
         this.state  = state;
         this.dateInput = date;
         const dateArray = this.dateInput.split("-");
-        const newDate = format(new Date(Number(dateArray[0]), Number(dateArray[1][1])-1), 'MMMM yyyy')
+        const newDate = format(new Date(Number(dateArray[0]), Number(dateArray[1][1])-1), 'MMMM yyyy');
         this.date = newDate;
         
 }

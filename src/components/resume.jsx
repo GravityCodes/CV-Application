@@ -3,13 +3,19 @@ import DropDown from './dropDown'
 import General from './general'
 import Address from './address'
 import Education from './education'
+import Skills from './skills'
 import WorkExperience from './workExp'
 import EducationObject from '../modules/educationObject'
+import Skill from "../modules/skillObject"
+import Duty from "../modules/dutyObject"
 
 export default function  Resume(){
     const [generalInfo, setGeneralInfo] = useState({name: "", email: "", phone: ""});
     const [address, setAddress] = useState({city: "", state: "",  country: "", zip: ""});
     const [educationContainer, setEducationContainer] = useState([]);
+    const [skillContainer, setSkillContainer] = useState([]);
+    const [dutiesContainer, setDutiesContainer] = useState([]);
+    const [workContainer, setWorkContainer] = useState([]);
 
     // Turn the address object to a list of value to display it to resume
     let addressArray = Object.values(address);
@@ -66,8 +72,7 @@ export default function  Resume(){
 
     function removeBtnHandler(id){
         confirm("This action can not be reversed. Are you sure you want to continue?") ? 
-        setEducationContainer([...educationContainer].filter(card => card.id != id)) :
-        0;
+        setEducationContainer([...educationContainer].filter(card => card.id != id)) : 0;
         
     }
 
@@ -88,6 +93,27 @@ export default function  Resume(){
         e.target.reset();
     }
 
+    //Skill handlers
+
+    function addNewSkill(e){
+        e.preventDefault();
+        setSkillContainer([...skillContainer, new Skill(e.target[0].value)]);
+        e.target.reset();
+    }
+
+    function removeSkill(id){
+        setSkillContainer([...skillContainer].filter(skill => skill.id != id));
+    }
+
+    //Work handlers
+
+    function addNewDuty(newDuty){
+        setDutiesContainer([...dutiesContainer, new Duty(newDuty)]);
+    }
+    function removeDuty(id){
+        setDutiesContainer([...dutiesContainer].filter(duty => duty.id != id));
+    }
+
     return (
         <>
             <DropDown name={"General Infomation"} info={<General generalInfo={generalInfo} changeHandler={generalInfoHandler} />}/>
@@ -99,7 +125,13 @@ export default function  Resume(){
                                                           handleRemove={removeBtnHandler}
                                                           handleUpdate={updateCardHandler} />}/>
             
-            <DropDown name={"Work Experience"} info={<WorkExperience />} />
+            <DropDown name={"Skills"} info={<Skills skillContainer={skillContainer} 
+                                                    addHandler={addNewSkill}
+                                                    removeHandler={removeSkill} />}/>
+
+            <DropDown name={"Work Experience"} info={<WorkExperience dutyContainer={dutiesContainer}
+                                                                     addDutyHandler={addNewDuty}
+                                                                     dutyRemoveHandler={removeDuty} />} />
             
             <div className="resume-wrapper">
                 <div  style={{padding: "15px 10px"}} className="resume">
@@ -124,6 +156,13 @@ export default function  Resume(){
                     })}
                     <h4>Skills</h4>
                     <hr />
+                    <ul className="resume-skill-container">
+                        {skillContainer.length != 0 && skillContainer.map(skill => {
+                            return (
+                                <li key={skill.id}>{skill.skillValue}</li>
+                            )
+                        })}
+                    </ul>
 
                     <h4>Work  Experience</h4>
                     <hr />

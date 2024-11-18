@@ -58,6 +58,7 @@
     position: relative;
     border-bottom: 1px solid var(--c2-200);
     transition: background-color .5s;
+    cursor: pointer;
 }
 
 .active {
@@ -76,28 +77,37 @@ h2 {
     top: 5px;
 }
 
-
-.input-field {
-    display: flex;
-    flex-direction: column;
-    color: var(--c3-100);
-    padding: 10px 20px;
-}
-
-.input-field label {
-    font-size: 1.3rem;
-    margin-bottom: 5px;
-}
-
-.input-field input {
-    height: 30px;
+input, textarea{
     font-size: 1.2rem;
     background-color: transparent;
     border: 1px solid var(--c2-300);
     color: var(--c3-100);
 }
 
-.input-field input:focus {
+input {
+    height: 30px;
+}
+
+textarea {
+    width: 100%;
+    min-height: 100px;
+}
+
+label {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    color: var(--c3-100);
+}
+
+.input-field {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;
+}
+
+
+
+input:focus, textarea:focus {
     outline: 1px solid var(--c-500);
 }
 
@@ -112,19 +122,21 @@ h2 {
     margin: 0 auto;
 }   
 
+button {
+    border: 1px solid var(--c-500);
+    background-color: var(--c-400);
+    box-shadow: 0px 0px 10px var(--c-500);
+}
+
 .edu-btn-wrapper button {
     padding: 5px;
     width: 100%;
     color: var(--c3-100);
-    background-color: var(--c-400);
-    border: 1px solid var(--c-500);
-
     position: relative;
     margin-top: 10px;
-    box-shadow: 0px 0px 10px var(--c-500);
 }
 
-.edu-btn-wrapper .add-btn::before {
+.add-btn::before {
     content: url("../assets/plus-square.svg");
     position: relative;
     top: 3px;
@@ -218,6 +230,74 @@ dialog .edu-btn-wrapper {
     filter: blur(10px);
 }
 
+/* Skills */
+
+.skill-field {
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-input-wrapper {
+    display: flex;
+    gap: 10px;
+    
+}
+
+.form-input-wrapper input {
+    width: 100%;
+}
+
+
+.skill-container {
+    list-style-type: none;
+    flex-wrap: wrap;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+}
+
+.skill-container li {
+    border: 1px solid var(--c-500);
+    background-color: var(--c-400);
+    padding: 5px;
+    color: var(--c3-100);
+    box-shadow: 0px 0px 10px var(--c-500);
+    cursor: pointer;
+}
+
+.skill-container li::after {
+    content: url("../assets/x-square.svg");
+    position: relative;
+    top: 4px;
+    left: 1px;
+}
+
+/* work */
+
+.duty-container {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    margin: 20px;
+    padding: 0px;
+    
+}
+
+.duty-container li {
+    color: var(--c3-100);
+    background-color: var(--c2-300);
+    padding: 10px;
+    border: 1px solid var(--c2-300);
+    box-shadow: 0px 0px 10px var(--c2-shadow);
+    cursor: pointer;
+}
+
+.duty-container li:nth-child(even){
+    background-color: var(--c2-200);
+}
+
 /* resume */
 
 h4{
@@ -236,6 +316,7 @@ h4{
     height: 450px;
     max-width: 350px;
     margin: 0 auto;
+    user-select: none;
 }
 
 .resume h3 {
@@ -283,4 +364,15 @@ h4{
 
 .education-item-top span {
     font-weight: normal;
+}
+
+/* resume Skill */
+
+.resume-skill-container {
+    padding: 0px 20px;
+    list-style-type:disc;
+    font-size: 0.5rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 10px;
 }
