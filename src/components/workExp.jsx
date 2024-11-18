@@ -12,6 +12,15 @@ export default function WorkExperience({dutyContainer, addDutyHandler, dutyRemov
         setDutyValue("");
     }
 
+    function addDutyKeyHandler(e){
+        e.preventDefault();
+        e.stopPropagation();
+
+        if(e.key == "Enter"){
+            addDutyBtnHandler();
+        }
+    }
+
     return (
         <form>
             <div className="input-field">
@@ -53,7 +62,7 @@ export default function WorkExperience({dutyContainer, addDutyHandler, dutyRemov
             <div className="input-field">
                 <label htmlFor="task">Responsibilities / Achievements</label>
                 <div className="form-input-wrapper">
-                    <textarea type="text" id="task" value={dutyValue} onChange={changeDutyHandler}/>
+                    <textarea type="text" id="task" value={dutyValue} onChange={changeDutyHandler} onKeyUp={addDutyKeyHandler}/>
                     <button type="button" className="add-btn" onClick={addDutyBtnHandler}></button>
                 </div>
             </div>
