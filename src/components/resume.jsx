@@ -17,9 +17,16 @@ export default function  Resume(){
     const [skillContainer, setSkillContainer] = useState([]);
     const [dutiesContainer, setDutiesContainer] = useState([]);
     const [workContainer, setWorkContainer] = useState([]);
+    const [activeIndex, setActiveIndex] = useState(0);
 
     // Turn the address object to a list of value to display it to resume
     let addressArray = Object.values(address);
+
+    //dropdown handler
+
+    function dropDownClickHandler (index) {
+        setActiveIndex(index)
+    }
 
 
     //general information handlers
@@ -157,27 +164,51 @@ export default function  Resume(){
     }
 
     return (
-        <>
-            <DropDown name={"General Infomation"} info={<General generalInfo={generalInfo} changeHandler={generalInfoHandler} />}/>
+        <div className='app-wrapper'>
+        
+            <div className="forms-wrapper">
+                <DropDown name={"General Infomation"} 
+                          info={<General generalInfo={generalInfo} changeHandler={generalInfoHandler}/>}
+                          activeIndex={activeIndex}
+                          handleClick={dropDownClickHandler}
+                          index={1}/>
+                          
+                <DropDown name={"Address"} 
+                          info={<Address address={address} />} 
+                          changeHandler={addressHandler}
+                          activeIndex={activeIndex}
+                          handleClick={dropDownClickHandler}
+                          index={2} />
 
-            <DropDown name={"Address"} info={<Address address={address} changeHandler={addressHandler}/>}/>
+                <DropDown name={"Education"} 
+                          info={<Education educationCardArray={educationContainer}
+                                           handleSubmit={educationSubmitHandler}
+                                           handleRemove={removeBtnHandler}
+                                           handleUpdate={updateCardHandler} />}
+                           activeIndex={activeIndex}
+                           handleClick={dropDownClickHandler}
+                           index={3}/>
 
-            <DropDown name={"Education"} info={<Education educationCardArray={educationContainer} 
-                                                          handleSubmit={educationSubmitHandler}
-                                                          handleRemove={removeBtnHandler}
-                                                          handleUpdate={updateCardHandler} />}/>
-            
-            <DropDown name={"Skills"} info={<Skills skillContainer={skillContainer} 
-                                                    addHandler={addNewSkill}
-                                                    removeHandler={removeSkill} />}/>
+                <DropDown name={"Skills"} 
+                          info={<Skills skillContainer={skillContainer}
+                                        addHandler={addNewSkill}
+                                        removeHandler={removeSkill} />}
+                          activeIndex={activeIndex}             
+                          handleClick={dropDownClickHandler}
+                          index={4}/>
 
-            <DropDown name={"Work Experience"} info={<WorkExperience dutyContainer={dutiesContainer}
-                                                                     addDutyHandler={addNewDuty}
-                                                                     dutyRemoveHandler={removeDuty}
-                                                                     workSubmitHandler={workSubmitHandler}
-                                                                     workContainer={workContainer}
-                                                                     handleRemove={removeWorkItem}
-                                                                     handleUpdate={workUpdateCardHandler}/>} />
+                <DropDown name={"Work Experience"} 
+                          info={<WorkExperience dutyContainer={dutiesContainer}
+                                                addDutyHandler={addNewDuty}
+                                                workSubmitHandler={workSubmitHandler}
+                                                workContainer={workContainer}
+                                                handleRemove={removeWorkItem}
+                                                handleUpdate={workUpdateCardHandler} 
+                                                dutyRemoveHandler={removeDuty}/>}
+                          activeIndex={activeIndex}
+                          handleClick={dropDownClickHandler}
+                          index={5}/>
+            </div>
             
             <div className="resume-wrapper">
                 <div  style={{padding: "15px 10px"}} className="resume">
@@ -230,6 +261,6 @@ export default function  Resume(){
                     })}
                 </div>
             </div>
-        </>
+        </div>
     )
 }

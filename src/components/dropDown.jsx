@@ -1,20 +1,18 @@
-import { useState } from "react";
-
 /* eslint-disable react/prop-types */ // TODO: upgrade to latest eslint tooling
-export default function DropDown({name, info}){
-    const [showStatus, setShowStatus] = useState(false);
-    const classes = `dropdown ${showStatus ? "active" : "disable"}`;
+export default function DropDown({name, info, handleClick, activeIndex, index}){
 
+    let isActive = activeIndex == index;
 
-    const handleClick = () => setShowStatus(!showStatus);
+    const classes = `dropdown ${isActive ? "active" : "disable"}`;
+
     
     return (
         <>
             <div className={classes}
-                 onClick={handleClick}>
+                 onClick={() => handleClick(index)}>
                 <h2>{name}</h2>
             </div>
-            <div className="form" hidden={!showStatus}>
+            <div className="form" hidden={!isActive}>
                     {info}
             </div>
         </>
