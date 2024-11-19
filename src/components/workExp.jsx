@@ -1,5 +1,5 @@
 import { useState, useRef } from "react"
-import DropDown from "./dropDown";
+import {DutyDropDown} from "./dropDown";
 import Duty from "../modules/dutyObject";
 
 export default function WorkExperience({
@@ -111,7 +111,7 @@ export default function WorkExperience({
                             <p>{card.startDate} - {card.endDate}</p>
                             <p>{card.city}, {card.state}</p>
 
-                            <DropDown name={"Responsibilities / Achivements"} info={ 
+                            <DutyDropDown name={"Responsibilities / Achivements"} info={ 
                                 <ul>
                                     {card.dutiesList.length !=0 && card.dutiesList.map(duty => {
                                         return (

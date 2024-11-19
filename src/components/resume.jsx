@@ -25,7 +25,13 @@ export default function  Resume(){
     //dropdown handler
 
     function dropDownClickHandler (index) {
-        setActiveIndex(index)
+        if(activeIndex == index) {
+            setActiveIndex(0)
+        }
+        else {
+            setActiveIndex(index)
+        }
+        
     }
 
 
@@ -174,8 +180,8 @@ export default function  Resume(){
                           index={1}/>
                           
                 <DropDown name={"Address"} 
-                          info={<Address address={address} />} 
-                          changeHandler={addressHandler}
+                          info={<Address address={address} 
+                          changeHandler={addressHandler} />} 
                           activeIndex={activeIndex}
                           handleClick={dropDownClickHandler}
                           index={2} />
@@ -228,7 +234,7 @@ export default function  Resume(){
                                             <h5>{card.name}  <span> | {card.city}, {card.state} </span></h5>
                                             <p>{card.date}</p>
                                         </div>
-                                        <p>{card.degree} in {card.major}</p>
+                                        <p><em>{card.degree} in {card.major}</em></p>
                                     </div>)
                     })}
                     <h4>Skills</h4>
@@ -249,7 +255,7 @@ export default function  Resume(){
                                             <h5>{card.name}  <span> | {card.city}, {card.state} </span></h5>
                                             <p>{card.startDate} - {card.endDate}</p>
                                         </div>
-                                        <p>{card.jobTitle}</p>
+                                        <p><em>{card.jobTitle}</em></p>
                                         <ul>
                                             {card.dutiesList.length !=0 && card.dutiesList.map(duty => {
                                                 return (

@@ -52,6 +52,7 @@
 }
 
 .forms-wrapper{
+    height: 100%;
     background-color: var(--c2-200);
 }
 
@@ -63,7 +64,7 @@
     padding: 5px 10px;
     color: var(--c3-100);
     position: relative;
-    border-bottom: 1px solid var(--c2-200);
+    border-bottom: 1px solid var(--c2-300);
     transition: background-color .5s;
     cursor: pointer;
 }
@@ -136,7 +137,7 @@ input:focus, textarea:focus {
 
 
 .form {
-    border-bottom: 1px solid var(--c2-200);
+    border-bottom: 1px solid var(--c2-300);
     padding-bottom: 20px;
 }
 
@@ -535,21 +536,25 @@ h4{
 
     .resume {
         height: 100%;
+        
     }
 
     .app-wrapper{
         display: flex;
-        height: 100vh;
+        min-height: 100vh;
     }
 
     .resume-wrapper {
-        
+        height: 100vh;
         border: none;
         background-color: var(--c2-shadow);
+        position: sticky;
+        top: 5px;
     }
 
     .forms-wrapper {
         width: 45%;
+        min-height: 100vh;
         border-right: 1px solid var(--c2-300);
     }
 
@@ -558,29 +563,58 @@ h4{
     }
 
     h4{
-        font-size: 0.9rem;
+        font-size: 1.2rem;
     }
 
     .resume h3 {
-        font-size: 1.5rem;
+        font-size: 1.7rem;
     }
 
     .profile-info {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
 
     .resume-education-item h5,
     .resume-work-item h5 {
-        font-size: 0.8rem;
+        font-size: 1rem;
     }
 
     .resume-skill-container,
     .resume-work-item ul {
-            font-size: 0.7rem;
+            font-size: 0.9rem;
     }
 
     .resume-education-item p,
     .resume-work-item p {
-        font-size: 0.7rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    h4{
+        font-size: 1.7rem;
+    }
+
+    .resume h3 {
+        font-size: 2.5rem;
+    }
+
+    .profile-info {
+        font-size: 0.9rem;
+    }
+
+    .resume-education-item h5,
+    .resume-work-item h5 {
+        font-size: 1.1rem;
+    }
+
+    .resume-skill-container,
+    .resume-work-item ul {
+            font-size: 1.2rem;
+    }
+
+    .resume-education-item p,
+    .resume-work-item p {
+        font-size: 1.1rem;
     }
 }
