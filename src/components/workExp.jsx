@@ -9,7 +9,9 @@ export default function WorkExperience({
                                         dutyRemoveHandler, 
                                         workContainer, 
                                         handleRemove, 
-                                        handleUpdate
+                                        handleUpdate,
+                                        toggleForm,
+                                        formStatus
                                         }) {
     
     const [currentCard, setCurrentCard] = useState([{name: "", jobTitle:"", city:"", state:"", startDate:"", endDate:"", dutiesList:[]}]);
@@ -129,7 +131,15 @@ export default function WorkExperience({
             })}
         </div>
 
-        <form onSubmit={workSubmitHandler}>
+        <div className="add-workCard-wrapper">
+            <button className="add-workCard-btn"
+                 onClick={toggleForm}
+                 hidden={formStatus}>
+                    Add New Job
+            </button>
+        </div>
+
+        <form onSubmit={workSubmitHandler} hidden={!formStatus}>
             <div className="input-field">
                 <label htmlFor="company">Company Name</label>
                 <input type="text" id="company" />
@@ -174,7 +184,8 @@ export default function WorkExperience({
                 </div>
             </div>
             <div className="edu-btn-wrapper">
-                <button type="submit" className="add-btn">Add</button>
+                <button type="submit" className="add-btn">Submit</button>
+                <button type="reset" className="cancel-btn" onClick={toggleForm}>Remove</button>
             </div>
         </form>
         

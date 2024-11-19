@@ -18,6 +18,8 @@ export default function  Resume(){
     const [dutiesContainer, setDutiesContainer] = useState([]);
     const [workContainer, setWorkContainer] = useState([]);
     const [activeIndex, setActiveIndex] = useState(0);
+    const [eduFormStatus, setEduFormStatus] = useState(false);
+    const [workFormStatus, setWorkFormStatus] = useState(false);
 
     // Turn the address object to a list of value to display it to resume
     let addressArray = Object.values(address);
@@ -82,6 +84,7 @@ export default function  Resume(){
 
         setEducationContainer([...educationContainer,new EducationObject(school, degree, major, city, state, date)]);
         e.target.reset();
+        toggleEduForm();
     }
 
     function removeBtnHandler(id){
@@ -143,6 +146,8 @@ export default function  Resume(){
         setWorkContainer([...workContainer,new Work(name,jobTitle,city,state,startDate,endDate,duties)]);
         e.target.reset();
         setDutiesContainer([]);
+        toggleWorkForm();
+        
     }
 
     function removeWorkItem(id) {
@@ -167,6 +172,17 @@ export default function  Resume(){
         
         setWorkContainer([...newWorkContainer, new Work(name, jobTitle, city, state, startDate, endDate, duties, cardId)]);
         e.target.reset();
+        
+        
+    }
+
+    //form handlers
+    function toggleEduForm () {
+        setEduFormStatus(!eduFormStatus);
+    }
+
+    function toggleWorkForm () {
+        setWorkFormStatus(!workFormStatus)
     }
 
     return (
@@ -190,7 +206,9 @@ export default function  Resume(){
                           info={<Education educationCardArray={educationContainer}
                                            handleSubmit={educationSubmitHandler}
                                            handleRemove={removeBtnHandler}
-                                           handleUpdate={updateCardHandler} />}
+                                           handleUpdate={updateCardHandler}
+                                           toggleForm={toggleEduForm} 
+                                           formStatus={eduFormStatus} />}
                            activeIndex={activeIndex}
                            handleClick={dropDownClickHandler}
                            index={3}/>
@@ -210,46 +228,72 @@ export default function  Resume(){
                                                 workContainer={workContainer}
                                                 handleRemove={removeWorkItem}
                                                 handleUpdate={workUpdateCardHandler} 
-                                                dutyRemoveHandler={removeDuty}/>}
+                                                dutyRemoveHandler={removeDuty}
+                                                toggleForm={toggleWorkForm}
+                                                formStatus={workFormStatus}/>}
                           activeIndex={activeIndex}
                           handleClick={dropDownClickHandler}
                           index={5}/>
+            
+                <div className='download-btn-wrapper'>
+                        <button type='button' className='download-btn'>Download Resume</button>
+                </div>
             </div>
+
+
+
+
             
             <div className="resume-wrapper">
-                <div  style={{padding: "15px 10px"}} className="resume">
-                    <h3>{generalInfo.name == "" ? "Your Name": generalInfo.name}</h3>
+                <div className="resume">
+                    <h3>{generalInfo.name}</h3>
                     <div className="profile-info">
-                        <p>{addressArray.some(e => e != "") ? [...addressArray].join(" ") : "Address"}</p>
-                        <p>{generalInfo.phone == "" ? "Phone number" : generalInfo.phone}</p>
-                        <p>{generalInfo.email == "" ? "Email" : generalInfo.email}</p>
+                        <p>{addressArray.some(e => e != "") ? `${[...addressArray].join(" ")} |` : ""}</p>
+                        <p>{generalInfo.phone == "" ? "" : `${generalInfo.phone} |`}</p>
+                        <p>{generalInfo.email}</p>
                     </div>
 
-
-                    <h4>Education</h4>
-                    <hr />
-                    {educationContainer.length != 0 && educationContainer.map(card  => {
-                            return (<div className="resume-education-item" key={card.id}>
+                    {educationContainer.length != 0 ? 
+                        <>
+                        <h4>Education</h4>
+                        <hr />
+                        {educationContainer.map(card  => {
+                            return (
+                                <>
+                                    
+                                    <div className="resume-education-item" key={card.id}>
                                         <div className="education-item-top">
                                             <h5>{card.name}  <span> | {card.city}, {card.state} </span></h5>
                                             <p>{card.date}</p>
                                         </div>
                                         <p><em>{card.degree} in {card.major}</em></p>
-                                    </div>)
+                                    </div>
+                                </>)
                     })}
-                    <h4>Skills</h4>
-                    <hr />
-                    <ul className="resume-skill-container">
-                        {skillContainer.length != 0 && skillContainer.map(skill => {
-                            return (
-                                <li key={skill.id}>{skill.skillValue}</li>
-                            )
-                        })}
-                    </ul>
+                        </> :
+                        ""
+                    }
 
-                    <h4>Work  Experience</h4>
-                    <hr />
-                    {workContainer.length != 0 && workContainer.map(card  => {
+                    {skillContainer.length != 0 ?
+                        <>
+                        <h4>Skills</h4>
+                        <hr />
+                        <ul className="resume-skill-container">
+                            {skillContainer.map(skill => {
+                                return (
+                                    <li key={skill.id}>{skill.skillValue}</li>
+                                )
+                            })}
+                        </ul>
+                        </> :
+                        ""
+                    }
+                    
+                    {workContainer.length != 0 ?
+                        <>
+                        <h4>Work  Experience</h4>
+                        <hr />
+                        {workContainer.map(card  => {
                             return (<div className="resume-work-item" key={card.id}>
                                         <div className="work-item-top">
                                             <h5>{card.name}  <span> | {card.city}, {card.state} </span></h5>
@@ -264,7 +308,11 @@ export default function  Resume(){
                                             })}
                                         </ul>
                                     </div>)
-                    })}
+                        })}
+                        </> :
+                        ""
+                    }
+
                 </div>
             </div>
         </div>

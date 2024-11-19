@@ -1,6 +1,6 @@
 import { useState, useRef } from "react"
 
-export default function Education({educationCardArray, handleSubmit, handleRemove, handleUpdate}) {
+export default function Education({educationCardArray, handleSubmit, handleRemove, handleUpdate, toggleForm, formStatus}) {
     const [currentCard, setCurrentCard] = useState([{name: "", degree:"",major:"",city:"",state:""}]);
 
 
@@ -10,10 +10,13 @@ export default function Education({educationCardArray, handleSubmit, handleRemov
         setCurrentCard(educationCardArray.filter(card => card.id == id));
     }
 
+ 
+
     function handleEdit(id){
         setCurrentCardId(id);
         toggleDialog();
     }
+
 
     function toggleDialog() {
 
@@ -66,7 +69,14 @@ export default function Education({educationCardArray, handleSubmit, handleRemov
                         </div>)
             })}
         </div>
-        <form onSubmit={handleSubmit}>
+        <div className="add-eduCard-wrapper">
+            <button className="add-eduCard-btn"
+                 onClick={toggleForm}
+                 hidden={formStatus}>
+                    Add New Education
+            </button>
+        </div>
+        <form onSubmit={handleSubmit} hidden={!formStatus}>
             <div className="input-field">
                 <label htmlFor="school">School Name</label>
                 <input type="text" id="school" />
@@ -92,7 +102,8 @@ export default function Education({educationCardArray, handleSubmit, handleRemov
                 <input type="month" id="date" />
             </div>
             <div className="edu-btn-wrapper">
-                <button type="submit" className="add-btn">Add</button>
+                <button type="submit" className="add-btn">Submit</button>
+                <button type="reset" className="cancel-btn" onClick={toggleForm}>Remove</button>
             </div>
         </form>
 

@@ -11,12 +11,13 @@
     font-weight: 400;
 
     --angle: 45deg; 
-    --c-100: #4B0082;
-    --c-200: #6A00A0;
-    --c-300: #8000BF;
-    --c-400: #9400D8;
-    --c-400-50: #9400d884;
-    --c-500: #ae00ff;
+    --c-100: #18bfbc;
+    --c-200: #4ac6c3;
+    --c-300: #5eb9b6;
+    --c-400: #69cecb;
+    --c-400-50: #82d5d250;
+    --c-500: #99dcd9;
+    --c-600: #aee3e1;
 
     --c2-shadow: #232323 ;
     --c2-100: #303030;
@@ -41,7 +42,7 @@
 
 .header{
     font-family: "Work Sans", serif;
-    color: var(--c-500);
+    color: var(--c-600);
     border-bottom: 1px solid  var(--c2-300);
     padding: 5px;
     font-size: 1.3rem;
@@ -133,6 +134,7 @@ label {
 
 input:focus, textarea:focus {
     outline: 1px solid var(--c-500);
+    box-shadow: 0px 0px 8px var(--c-500);
 }
 
 
@@ -172,6 +174,25 @@ button {
     left: -1px;
 }
 
+.add-eduCard-wrapper,
+.download-btn-wrapper,
+.add-workCard-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.add-eduCard-btn,
+.download-btn,
+.add-workCard-btn {
+    color: var(--c3-100);
+    padding: 2%;
+    font-size: 1.2rem;
+}
+
+.download-btn-wrapper {
+    padding: 5%;
+}
+
 /* Card Styles */
 
 .card-wrapper {
@@ -192,8 +213,10 @@ button {
     gap: 10px;
 }
 
-.education-card h5 {
+.education-card h5,
+.work-card h5 {
     font-size: 1.2rem;
+    color: var(--c-600);
 }
 
 .btn-wrapper {
@@ -357,6 +380,7 @@ h4{
     width: 100%;
     margin: 0 auto;
     user-select: none;
+    padding: 5% 10%;
 }
 
 .resume h3 {
@@ -376,7 +400,6 @@ h4{
 }
 
 .profile-info p:not(:last-child) {
-    border-right: 1px solid black;
     padding-right: 10px;
     margin-right: 10px;
     
@@ -384,6 +407,10 @@ h4{
 
 
 /* resume Education */
+
+.resume-education-item {
+    padding-bottom: 1%;
+}
 
 .resume-education-item h5,
 .resume-work-item h5 {
@@ -424,6 +451,11 @@ h4{
     margin-top: -4px;
 }
 
+.resume-skill-container {
+    padding-top: 5px;
+    padding-bottom: 5%;
+}
+
 /* resume work */
 
 .resume-work-item p {
@@ -458,8 +490,24 @@ h4{
 @media (min-width: 425px ) {
     .resume {
         height: 550px;
-
     }
+
+    .education-card h5,
+    .work-card h5 {
+    font-size: 1.5rem;
+    color: var(--c-600);
+    }
+
+    .education-card p,
+    .work-card p,
+    .work-card h2 {
+    font-size: 1.1rem;
+    }
+
+    .work-card ul {
+        font-size: 1.2rem;
+    }
+
 }
 
 @media (min-width: 510px) {
@@ -493,6 +541,19 @@ h4{
     .resume-work-item p {
         font-size: 0.6rem;
     }
+
+    .education-card h5,
+    .work-card h5 {
+    font-size: 1.8rem;
+    color: var(--c-600);
+    }
+
+    .education-card p,
+    .work-card p,
+    .work-card h2 {
+    font-size: 1.2rem;
+    }
+
 }
 
 @media (min-width: 620px) {
@@ -588,9 +649,41 @@ h4{
     .resume-work-item p {
         font-size: 0.9rem;
     }
+
+    .education-card h5,
+    .work-card h5 {
+    font-size: 1.5rem;
+    color: var(--c-600);
+    }
+
+    .education-card p,
+    .work-card p,
+    .work-card h2 {
+    font-size: 1.1rem;
+    }
+
+    .work-card ul {
+        font-size: 1.2rem;
+    }
+
+    .resume-skill-container,
+    .resume-work-item ul {
+        padding: 0px 30px;
+    }
+
+    .resume-skill-container {
+        padding-top: 5px;
+        padding-bottom: 5%;
+    }
+
 }
 
 @media (min-width: 1024px) {
+    .forms-wrapper {
+        width: 30%;
+        min-height: 100vh;
+        border-right: 1px solid var(--c2-300);
+    }
     h4{
         font-size: 1.7rem;
     }
