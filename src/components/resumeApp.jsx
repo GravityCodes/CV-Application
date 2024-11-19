@@ -9,9 +9,11 @@ import EducationObject from '../modules/educationObject'
 import Skill from "../modules/skillObject"
 import Duty from "../modules/dutyObject"
 import Work from "../modules/workObject"
+import createPDF from '../modules/jsToPdf'
 
 export default function  Resume(){
     const [generalInfo, setGeneralInfo] = useState({name: "", email: "", phone: ""});
+
     const [address, setAddress] = useState({city: "", state: "",  country: "", zip: ""});
     const [educationContainer, setEducationContainer] = useState([]);
     const [skillContainer, setSkillContainer] = useState([]);
@@ -185,6 +187,12 @@ export default function  Resume(){
         setWorkFormStatus(!workFormStatus)
     }
 
+    //download Button
+
+    function downloadHandler () {
+        createPDF(generalInfo, address);
+    }
+
     return (
         <div className='app-wrapper'>
         
@@ -236,7 +244,7 @@ export default function  Resume(){
                           index={5}/>
             
                 <div className='download-btn-wrapper'>
-                        <button type='button' className='download-btn'>Download Resume</button>
+                        <button type='button' className='download-btn' onClick={downloadHandler}>Download Resume</button>
                 </div>
             </div>
 

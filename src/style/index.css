@@ -155,7 +155,7 @@ input:focus, textarea:focus {
 button {
     border: 1px solid var(--c-500);
     background-color: var(--c-400);
-    box-shadow: 0px 0px 10px var(--c-500);
+    box-shadow: 0px 0px 5px var(--c-500);
     cursor: pointer;
 }
 
@@ -381,6 +381,7 @@ h4{
     margin: 0 auto;
     user-select: none;
     padding: 5% 10%;
+    font-family: Helvetica;
 }
 
 .resume h3 {
