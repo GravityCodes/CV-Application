@@ -12,7 +12,7 @@ export default function Skills({skillContainer, addHandler, removeHandler}){
 
             <label htmlFor="skills">Add Skill</label>
             <form className="form-input-wrapper" onSubmit={addHandler}>
-                <input type="text" name="skill" id="skills" />
+                <input type="text" name="skill" id="skills" maxLength={40} />
                 <button type="submit" className="add-btn"></button>
             </form>
             

@@ -15,7 +15,7 @@ import createPDF from '../modules/jsToPdf'
 export default function  Resume(){
     const [generalInfo, setGeneralInfo] = useState({name: "", email: "", phone: ""});
 
-    const [address, setAddress] = useState({city: "", state: "",  country: "", zip: ""});
+    const [address, setAddress] = useState({street: "", city: "", state: "",  country: "", zip: ""});
     const [educationContainer, setEducationContainer] = useState([]);
     const [skillContainer, setSkillContainer] = useState([]);
     const [dutiesContainer, setDutiesContainer] = useState([]);
@@ -58,6 +58,9 @@ export default function  Resume(){
     //address handlers
     function addressHandler (e) {
         switch(e.target.id){
+            case "street":
+                setAddress({...address, street: e.target.value});
+                break;
             case "city": 
                 setAddress({...address, city: e.target.value});
                 break;
