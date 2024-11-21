@@ -11,6 +11,7 @@ import Duty from "../modules/dutyObject"
 import Work from "../modules/workObject"
 import createPDF from '../modules/jsToPdf'
 
+
 export default function  Resume(){
     const [generalInfo, setGeneralInfo] = useState({name: "", email: "", phone: ""});
 
@@ -190,7 +191,8 @@ export default function  Resume(){
     //download Button
 
     function downloadHandler () {
-        createPDF(generalInfo, address);
+        createPDF(generalInfo, address, educationContainer, skillContainer, workContainer);
+
     }
 
     return (
@@ -256,9 +258,9 @@ export default function  Resume(){
                 <div className="resume">
                     <h3>{generalInfo.name}</h3>
                     <div className="profile-info">
-                        <p>{addressArray.some(e => e != "") ? `${[...addressArray].join(" ")} |` : ""}</p>
-                        <p>{generalInfo.phone == "" ? "" : `${generalInfo.phone} |`}</p>
-                        <p>{generalInfo.email}</p>
+                        <p>{addressArray.some(e => e != "") ? `${[...addressArray].join(" ")} | ` : ""}</p>
+                        <p>{generalInfo.phone == "" ? "" : `${generalInfo.phone} | `}</p>
+                        <p>{`${generalInfo.email}`}</p>
                     </div>
 
                     {educationContainer.length != 0 ? 
