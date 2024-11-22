@@ -6,7 +6,7 @@ class Coordinates {
         this.skillsYValue = this.educationYValue + 23;
         this.skillsXValue = 100;
         this.skillCounter = 0;
-        this.workYValue =  this.skillsYValue + 12;
+        this.workYValue =  this.skillsYValue;
         this.taskWorkYValue = 0;
     }
 
